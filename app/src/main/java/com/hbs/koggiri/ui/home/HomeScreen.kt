@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
-import com.hbs.koggiri.ui.history.component.SaladCardList
-import com.hbs.koggiri.ui.history.component.WeightCard
+import com.hbs.koggiri.ui.home.component.SaladCardList
+import com.hbs.koggiri.ui.home.component.WeightCard
 import com.hbs.koggiri.ui.theme.NeutralVariant95
 
 @Composable

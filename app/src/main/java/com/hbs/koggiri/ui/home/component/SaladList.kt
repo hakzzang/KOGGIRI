@@ -1,4 +1,4 @@
-package com.hbs.koggiri.ui.history.component
+package com.hbs.koggiri.ui.home.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
