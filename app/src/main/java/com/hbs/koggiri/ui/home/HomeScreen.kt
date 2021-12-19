@@ -14,7 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
 import com.hbs.koggiri.ui.home.component.SaladCardList
-import com.hbs.koggiri.ui.home.component.WeightCard
+import com.hbs.koggiri.ui.home.component.StatItemList
 import com.hbs.koggiri.ui.theme.NeutralVariant95
 
 @Composable
@@ -26,6 +26,12 @@ fun HomeScreenBody() {
         "2022년 1월 4일",
         "2022년 1월 5일",
         "2022년 1월 6일"
+    )
+
+    val stats = listOf(
+        "Days Running",
+        "Days Eating Salad",
+        "Days Watching Calmdown Man"
     )
     val scrollState = rememberScrollState()
     Column(
@@ -39,7 +45,7 @@ fun HomeScreenBody() {
             .padding(top = 24.dp, bottom = 24.dp)
     ) {
         KoggiriMediumTitle("Your stats")
-        WeightCard()
+        StatItemList(stats = stats)
 
         KoggiriMediumTitle("Salad History")
         SaladCardList(saladHistories = saladHistories)
