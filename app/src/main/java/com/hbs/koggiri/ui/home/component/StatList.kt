@@ -1,6 +1,7 @@
 package com.hbs.koggiri.ui.home.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -17,19 +18,25 @@ import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
 
 @Composable
-fun StatItemList(stats: List<String>) {
+fun StatItemList(stats: List<String>, onClickStatContent: () -> Unit) {
     stats.forEach {
-        StatItem(it)
+        StatItem(it, onClickStatContent)
     }
 }
 
 @Composable
-fun StatItem(stat: String) {
+fun StatItem(
+    stat: String,
+    onClickStatContent: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(start = STAT_ITEM_SIDE_PADDING, end = STAT_ITEM_SIDE_PADDING)
             .height(STAT_ITEM_CONTAINER_HEIGHT)
+            .clickable { onClickStatContent() },
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier
@@ -52,7 +59,9 @@ fun StatItem(stat: String) {
             modifier = Modifier
                 .padding(
                     start = STAT_ITEM_SIDE_PADDING,
-                    end = STAT_ITEM_SIDE_PADDING
+                    end = STAT_ITEM_SIDE_PADDING,
+                    top = STAT_ITEM_TOP_BOTTOM_PADDING,
+                    bottom = STAT_ITEM_TOP_BOTTOM_PADDING
                 )
                 .fillMaxHeight()
                 .align(Alignment.CenterVertically)
@@ -67,3 +76,4 @@ fun StatItem(stat: String) {
 
 private val STAT_ITEM_CONTAINER_HEIGHT = 56.dp
 private val STAT_ITEM_SIDE_PADDING = 16.dp
+private val STAT_ITEM_TOP_BOTTOM_PADDING = 8.dp
