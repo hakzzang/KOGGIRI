@@ -11,15 +11,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun KoggiriMediumTitle(title: String) {
+fun KoggiriMediumTitle(title: String, modifier: Modifier = Modifier) {
     Text(
         title,
         style = MaterialTheme.typography.titleLarge.copy(
             color = MaterialTheme.colorScheme.onSurface,
             fontWeight = FontWeight.Bold
         ),
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
+            .wrapContentWidth()
             .height(MEDIUM_CONTAINER_HEIGHT)
             .padding(
                 start = MEDIUM_CONTAINER_SIDE_PADDING,
