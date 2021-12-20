@@ -1,9 +1,7 @@
 package com.hbs.koggiri.ui.home
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -12,9 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.hbs.koggiri.ui.component.KoggiriMediumTitle
-import com.hbs.koggiri.ui.home.component.SaladCardList
-import com.hbs.koggiri.ui.home.component.StatItemList
+import com.hbs.koggiri.ui.home.component.SaladHistoryContent
+import com.hbs.koggiri.ui.home.component.StatsContent
 import com.hbs.koggiri.ui.theme.NeutralVariant95
 
 @Composable
@@ -44,11 +41,9 @@ fun HomeScreenBody() {
             .background(MaterialTheme.colorScheme.background)
             .padding(top = 24.dp, bottom = 24.dp)
     ) {
-        KoggiriMediumTitle("Your stats")
-        StatItemList(stats = stats)
-
-        KoggiriMediumTitle("Salad History")
-        SaladCardList(saladHistories = saladHistories)
+        StatsContent(stats)
+        Spacer(modifier = Modifier.height(18.dp))
+        SaladHistoryContent(saladHistories)
     }
 }
 
