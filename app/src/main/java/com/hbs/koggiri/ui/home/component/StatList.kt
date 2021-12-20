@@ -2,16 +2,22 @@ package com.hbs.koggiri.ui.home.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.LayoutGravityEndText
 import com.hbs.koggiri.ui.component.OneItemBody
@@ -33,9 +39,13 @@ fun StatItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .clickable(
+                onClick = { onClickStatContent() },
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple()
+            )
             .padding(start = STAT_ITEM_SIDE_PADDING, end = STAT_ITEM_SIDE_PADDING)
-            .height(STAT_ITEM_CONTAINER_HEIGHT)
-            .clickable { onClickStatContent() },
+            .height(STAT_ITEM_CONTAINER_HEIGHT),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
