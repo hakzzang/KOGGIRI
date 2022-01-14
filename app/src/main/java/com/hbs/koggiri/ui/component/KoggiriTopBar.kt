@@ -2,6 +2,7 @@ package com.hbs.koggiri.ui.component
 
 import androidx.compose.animation.rememberSplineBasedDecay
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
@@ -11,7 +12,7 @@ import com.hbs.koggiri.ui.theme.NeutralVariant95
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun KoggiriTopBar() {
+fun KoggiriTopBar(nodeSize: Int) {
     val decayAnimationSpec = rememberSplineBasedDecay<Float>()
     val scrollBehavior = remember(decayAnimationSpec) {
         TopAppBarDefaults.exitUntilCollapsedScrollBehavior(decayAnimationSpec)
@@ -21,7 +22,7 @@ fun KoggiriTopBar() {
         navigationIcon = {
             IconButton(onClick = { /* doSomething() */ }) {
                 Icon(
-                    imageVector = Icons.Filled.Menu,
+                    imageVector = if (nodeSize > 0) Icons.Filled.ArrowBack else Icons.Filled.Menu,
                     contentDescription = "Localized description"
                 )
             }
