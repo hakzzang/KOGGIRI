@@ -15,7 +15,10 @@ import com.hbs.koggiri.ui.home.component.StatsContent
 import com.hbs.koggiri.ui.theme.NeutralVariant95
 
 @Composable
-fun HomeScreenBody() {
+fun HomeScreenBody(
+    onClickStatContent: (String) -> Unit,
+    onClickSaladHistoryContent: () -> Unit
+) {
     val saladHistories = listOf(
         "2022년 1월 1일",
         "2022년 1월 2일",
@@ -41,7 +44,7 @@ fun HomeScreenBody() {
             .background(MaterialTheme.colorScheme.background)
             .padding(top = 24.dp, bottom = 24.dp)
     ) {
-        StatsContent(stats)
+        StatsContent(stats = stats, onClickStatContent = onClickStatContent)
         Spacer(modifier = Modifier.height(18.dp))
         SaladHistoryContent(saladHistories)
     }

@@ -15,16 +15,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.LayoutGravityEndText
 import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
 
 @Composable
-fun StatItemList(stats: List<String>, onClickStatContent: () -> Unit) {
+fun StatItemList(stats: List<String>, onClickStatContent: (String) -> Unit) {
     stats.forEach {
         StatItem(it, onClickStatContent)
     }
@@ -33,14 +30,14 @@ fun StatItemList(stats: List<String>, onClickStatContent: () -> Unit) {
 @Composable
 fun StatItem(
     stat: String,
-    onClickStatContent: () -> Unit,
+    onClickStatContent: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .clickable(
-                onClick = { onClickStatContent() },
+                onClick = { onClickStatContent(stat) },
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple()
             )

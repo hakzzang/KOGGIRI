@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
 
 @Composable
-fun StatsContent(stats: List<String>) {
+ fun StatsContent(stats: List<String>, onClickStatContent: (String) -> Unit) {
     Row {
         KoggiriMediumTitle(
             title = "Your stats",
@@ -29,7 +29,7 @@ fun StatsContent(stats: List<String>) {
         )
         Spacer(modifier = Modifier.size(12.dp))
     }
-    StatItemList(stats = stats)
+    StatItemList(stats = stats, onClickStatContent = onClickStatContent)
 }
 
 @Composable
