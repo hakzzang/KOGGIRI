@@ -10,5 +10,7 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
+val Green500 = Color(0xFF1EB980)
+
 val NeutralVariant90 = Color(red = 231, green = 224, blue = 236)
 val NeutralVariant95 = Color(red = 245, green = 238, blue = 250)
