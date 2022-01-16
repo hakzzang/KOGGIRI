@@ -13,13 +13,20 @@ import androidx.navigation.compose.rememberNavController
 fun KoggiriScaffold() {
     val allScreen = KoggiriScreen.values().toList()
     val navController = rememberNavController()
-    val backQueueSize = remember {
-        Log.d("navController", navController.backQueue.size.toString())
-        navController.backQueue.size
-    }
+    val backQueueSize = remember { navController.backQueue.size }
+    var clickedItem by remember { mutableStateOf(INITIALIZE_TAB_POSITION) }
     Scaffold(
         topBar = { KoggiriTopBar(backQueueSize) },
-        bottomBar = { KoggiriBottomBar(allScreen = allScreen) }
+        bottomBar = {
+            KoggiriBottomBar(
+                allScreen = allScreen,
+                onClickItemCallback = { index ->
+                    navController.navigate(KoggiriScreen.fromRoute(index))
+                    clickedItem = index
+                },
+                clickedItem = clickedItem
+            )
+        }
     ) {
         KoggiriNavHost(
             navController = navController,
@@ -27,3 +34,5 @@ fun KoggiriScaffold() {
         )
     }
 }
+
+private const val INITIALIZE_TAB_POSITION = 0
