@@ -20,6 +20,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.KoggiriLargeTitle
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
+import com.hbs.koggiri.ui.component.OneItemBody
+import com.hbs.koggiri.ui.component.OneItemTitle
 import com.hbs.koggiri.ui.theme.PointColor
 
 @Composable
@@ -31,7 +33,7 @@ fun GreetingContent(
     Column (modifier = modifier) {
         Row {
             KoggiriMediumTitle(
-                title = "Today Calorie Asset",
+                title = "Today Calorie Asset \uD83E\uDD51",
                 modifier = Modifier
                     .weight(1f)
                     .wrapContentWidth(Alignment.Start)
@@ -74,10 +76,39 @@ fun GreetingContent(
                     tint = Color.White
                 )
             }
-            KoggiriLargeTitle(
-                title = "Saved 2400cal \uD83E\uDD51",
-                modifier = Modifier.wrapContentWidth().wrapContentHeight()
-            )
+            Column {
+                OneItemTitle("Total Calorie Card")
+                OneItemBody("72,400 calorie")
+            }
+        }
+        Spacer(modifier = Modifier.size(24.dp))
+        Row {
+            Box(
+                modifier = Modifier
+                    .padding(
+                        start = 16.dp,
+                        end = 16.dp
+                    )
+                    .size(40.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(PointColor.copy(alpha = 0.8f))
+                    .padding(
+                        start = 8.dp,
+                        top = 8.dp,
+                        end = 8.dp,
+                        bottom = 8.dp
+                    )
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Lock,
+                    contentDescription = "Check",
+                    tint = Color.White
+                )
+            }
+            Column {
+                OneItemTitle("Today Calorie Card")
+                OneItemBody("2,400 calorie")
+            }
         }
     }
 }

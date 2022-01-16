@@ -36,7 +36,7 @@ fun HomeScreenBody(
     Column(Modifier.verticalScroll(scrollState)) {
         GreetingContent(
             onClickGreetingContent = {},
-            onClickEdit = {},
+            onClickEdit = {  },
             modifier = Modifier.getCardModifier()
         )
         StatsContent(
