@@ -11,6 +11,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KoggiriApp()
         }
+
     }
 }
 
