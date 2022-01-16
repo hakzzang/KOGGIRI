@@ -16,6 +16,10 @@ import com.hbs.koggiri.ui.status.StatusDetailScreen
 @Composable
 fun KoggiriNavHost(
     navController: NavHostController,
+    onClickSaladHistoryContent: () -> Unit,
+    onClickGreetingContent: (String) -> Unit,
+    onClickGreetingEdit: (String) -> Unit,
+    onClickStatContent: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     NavHost(
@@ -25,8 +29,11 @@ fun KoggiriNavHost(
     ) {
         composable(KoggiriScreen.Home.title) {
             HomeScreenBody(
-                onClickStatContent = { item -> navController.navigate("${KoggiriScreen.Home.title}/$item\"") },
-                onClickSaladHistoryContent = {})
+                onClickStatContent = onClickStatContent,
+                onClickSaladHistoryContent = {},
+                onClickGreetingContent = onClickGreetingContent,
+                onClickGreetingEdit = onClickGreetingEdit
+            )
         }
         composable(KoggiriScreen.HISTORY.title) {
             HistoryScreenBody()
@@ -34,7 +41,23 @@ fun KoggiriNavHost(
         composable(KoggiriScreen.SETTING.title) {
             SettingScreenBody()
         }
-
+        composable(
+            route = "${KoggiriScreen.GREETING}/content/{day}",
+            arguments = listOf(
+                navArgument("day") {
+                    type = NavType.StringType
+                }
+            ),
+            deepLinks = listOf(navDeepLink {
+                uriPattern = "koggiri://${KoggiriScreen.GREETING}/content/{day}"
+            })
+        ) { entry ->
+            val day = entry.arguments?.getString("day")
+            var isComplete by remember { mutableStateOf(false) }
+            StatusDetailScreen(title = day ?: "", isComplete, {
+                isComplete = it
+            })
+        }
         composable(
             route = "${KoggiriScreen.Home}/{status}",
             arguments = listOf(

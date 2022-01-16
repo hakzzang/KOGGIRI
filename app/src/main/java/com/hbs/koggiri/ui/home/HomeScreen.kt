@@ -16,7 +16,9 @@ import com.hbs.koggiri.ui.home.component.StatsContent
 @Composable
 fun HomeScreenBody(
     onClickStatContent: (String) -> Unit,
-    onClickSaladHistoryContent: () -> Unit
+    onClickSaladHistoryContent: () -> Unit,
+    onClickGreetingContent: (String) -> Unit,
+    onClickGreetingEdit: (String) -> Unit
 ) {
     val saladHistories = listOf(
         "2022년 1월 1일",
@@ -35,8 +37,8 @@ fun HomeScreenBody(
     val scrollState = rememberScrollState()
     Column(Modifier.verticalScroll(scrollState)) {
         GreetingContent(
-            onClickGreetingContent = {},
-            onClickEdit = {  },
+            onClickGreetingContent = onClickGreetingContent,
+            onClickGreetingEdit = onClickGreetingEdit,
             modifier = Modifier.getCardModifier()
         )
         StatsContent(

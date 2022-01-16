@@ -8,12 +8,12 @@ import androidx.compose.runtime.*
 
 @Composable
 fun KoggiriBottomBar(
-    allScreen: List<KoggiriScreen>,
+    bottomTabs: List<KoggiriScreen>,
     onClickItemCallback: (Int) -> Unit,
     clickedItem: Int
 ) {
     NavigationBar {
-        allScreen.forEachIndexed { index, screen ->
+        bottomTabs.forEachIndexed { index, screen ->
             NavigationBarItem(
                 icon = { Icon(screen.icon, contentDescription = null) },
                 label = { Text(screen.title) },

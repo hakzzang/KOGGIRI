@@ -11,10 +11,20 @@ enum class KoggiriScreen(
     val icon: ImageVector
 ) {
     Home("HOME", Icons.Filled.Home),
+    GREETING("GREETING", Icons.Filled.Home),
     HISTORY("HISTORY", Icons.Filled.List),
-    SETTING("SETTING", Icons.Filled.Settings);
+    SETTING("SETTING", Icons.Filled.Settings),
+    EMPTY("EMPTY", Icons.Filled.Home);
+
+    operator fun plus(append: String): String {
+        return title + append
+    }
 
     companion object {
+        fun getBottomTabs(): List<KoggiriScreen> {
+            return listOf(Home, HISTORY, SETTING)
+        }
+
         fun fromRoute(index: Int): String {
             when (index) {
                 0 -> return Home.title
@@ -22,6 +32,15 @@ enum class KoggiriScreen(
                 2 -> return SETTING.title
             }
             return Home.title
+        }
+
+        fun fromRoute(title: String): KoggiriScreen {
+            return when (title) {
+                Home.title -> return Home
+                HISTORY.title -> return HISTORY
+                SETTING.title -> return SETTING
+                else -> return EMPTY
+            }
         }
     }
 }

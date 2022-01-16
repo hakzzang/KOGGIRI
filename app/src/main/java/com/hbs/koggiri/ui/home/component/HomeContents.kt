@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.hbs.koggiri.ui.component.KoggiriLargeTitle
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
+import com.hbs.koggiri.ui.component.KoggiriScreen
 import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
 import com.hbs.koggiri.ui.theme.PointColor
@@ -27,10 +27,10 @@ import com.hbs.koggiri.ui.theme.PointColor
 @Composable
 fun GreetingContent(
     onClickGreetingContent: (String) -> Unit,
-    onClickEdit: () -> Unit,
+    onClickGreetingEdit: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column (modifier = modifier) {
+    Column(modifier = modifier) {
         Row {
             KoggiriMediumTitle(
                 title = "Today Calorie Asset \uD83E\uDD51",
@@ -48,12 +48,20 @@ fun GreetingContent(
                         indication = rememberRipple(
                             radius = 16.dp
                         ),
-                        onClick = { onClickEdit() }
+                        onClick = { onClickGreetingEdit(KoggiriScreen.GREETING + "/edit") }
                     )
             )
             Spacer(modifier = Modifier.size(12.dp))
         }
-        Row {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .clickable(
+                    onClick = { onClickGreetingContent(KoggiriScreen.GREETING + "/content/ALL") },
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple()
+                )
+        ) {
             Box(
                 modifier = Modifier
                     .padding(
@@ -82,7 +90,15 @@ fun GreetingContent(
             }
         }
         Spacer(modifier = Modifier.size(24.dp))
-        Row {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .clickable(
+                    onClick = { onClickGreetingContent(KoggiriScreen.GREETING + "/content/TODAY") },
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple()
+                )
+        ) {
             Box(
                 modifier = Modifier
                     .padding(
@@ -119,7 +135,7 @@ fun StatsContent(
     onClickStatContent: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column (modifier = modifier) {
+    Column(modifier = modifier) {
         Row {
             KoggiriMediumTitle(
                 title = "Your stats",
