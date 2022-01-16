@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.getCardModifier
+import com.hbs.koggiri.ui.home.component.GreetingContent
 import com.hbs.koggiri.ui.home.component.SaladHistoryContent
 import com.hbs.koggiri.ui.home.component.StatsContent
 
@@ -33,6 +34,11 @@ fun HomeScreenBody(
     )
     val scrollState = rememberScrollState()
     Column(Modifier.verticalScroll(scrollState)) {
+        GreetingContent(
+            onClickGreetingContent = {},
+            onClickEdit = {},
+            modifier = Modifier.getCardModifier()
+        )
         StatsContent(
             stats = stats,
             onClickStatContent = onClickStatContent,

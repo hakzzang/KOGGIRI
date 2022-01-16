@@ -11,6 +11,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
+fun KoggiriLargeTitle(title: String, modifier: Modifier = Modifier) {
+    Text(
+        title,
+        style = MaterialTheme.typography.headlineMedium.copy(
+            color = MaterialTheme.colorScheme.onSurface,
+            fontWeight = FontWeight.Bold
+        ),
+        modifier = modifier
+    )
+}
+
+@Composable
 fun KoggiriMediumTitle(title: String, modifier: Modifier = Modifier) {
     Text(
         title,

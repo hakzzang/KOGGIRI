@@ -2,6 +2,7 @@ package com.hbs.koggiri.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val PointColor = Color(0xFFFB6A02)
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
