@@ -20,19 +20,21 @@ kotlin {
 
     sourceSets {
         val commonMain by getting
+
+        val data = create("data")
+        val domain = create("domain")
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val commonJvmAndroid = create("commonJvmAndroid") {
-            dependsOn(commonMain)
-        }
 
         val androidMain by getting {
-            dependsOn(commonJvmAndroid)
-            kotlin.srcDir("src/commonJvmAndroid/kotlin")
+            dependsOn(data)
+            dependsOn(domain)
+            kotlin.srcDir("src/data/kotlin")
+            kotlin.srcDir("src/domain/kotlin")
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
             }

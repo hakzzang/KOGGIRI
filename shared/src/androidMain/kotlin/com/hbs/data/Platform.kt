@@ -1,4 +1,4 @@
-package com.hbs.shared
+package com.hbs.data
 
 actual class Platform actual constructor() {
     actual val platform: String = "Android ${android.os.Build.VERSION.SDK_INT}"
