@@ -56,7 +56,7 @@ fun SaladCard(title: String, dateText: String, resource: Painter) {
         modifier = Modifier
             .width(212.dp)
             .wrapContentHeight()
-            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp),
+            .padding(start = 16.dp, end = 12.dp, top = 0.dp, bottom = 0.dp),
         shape = RoundedCornerShape(12.dp),
         elevation = 0.dp,
         backgroundColor = MaterialTheme.colorScheme.primaryContainer
