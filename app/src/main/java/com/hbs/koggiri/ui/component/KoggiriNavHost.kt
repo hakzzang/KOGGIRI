@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
-import com.hbs.koggiri.ui.history.HistoryScreenBody
+import com.hbs.koggiri.ui.history.AssetScreenBody
 import com.hbs.koggiri.ui.home.HomeScreenBody
 import com.hbs.koggiri.ui.setting.SettingScreenBody
 import com.hbs.koggiri.ui.status.StatusDetailScreen
@@ -35,11 +35,23 @@ fun KoggiriNavHost(
                 onClickGreetingEdit = onClickGreetingEdit
             )
         }
-        composable(KoggiriScreen.HISTORY.title) {
-            HistoryScreenBody()
+        composable(KoggiriScreen.ASSET.title) {
+            AssetScreenBody()
         }
         composable(KoggiriScreen.SETTING.title) {
             SettingScreenBody()
+        }
+        composable(
+            route = "${KoggiriScreen.GREETING}/edit",
+            arguments = listOf(),
+            deepLinks = listOf(navDeepLink {
+                uriPattern = "koggiri://${KoggiriScreen.GREETING}/edit"
+            })
+        ) { entry ->
+            var isComplete by remember { mutableStateOf(false) }
+            StatusDetailScreen(title = "EDIT", isComplete, {
+                isComplete = it
+            })
         }
         composable(
             route = "${KoggiriScreen.GREETING}/content/{day}",

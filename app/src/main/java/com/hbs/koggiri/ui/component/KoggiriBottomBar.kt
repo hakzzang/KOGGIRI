@@ -10,14 +10,14 @@ import androidx.compose.runtime.*
 fun KoggiriBottomBar(
     bottomTabs: List<KoggiriScreen>,
     onClickItemCallback: (Int) -> Unit,
-    clickedItem: Int
+    currentScreen: KoggiriScreen
 ) {
     NavigationBar {
         bottomTabs.forEachIndexed { index, screen ->
             NavigationBarItem(
                 icon = { Icon(screen.icon, contentDescription = null) },
                 label = { Text(screen.title) },
-                selected = clickedItem == index,
+                selected = currentScreen == KoggiriScreen.screenOf(index),
                 onClick = { onClickItemCallback(index) }
             )
         }

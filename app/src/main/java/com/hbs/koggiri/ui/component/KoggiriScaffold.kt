@@ -2,65 +2,66 @@ package com.hbs.koggiri.ui.component
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun KoggiriScaffold() {
-    val bottomTabs = KoggiriScreen.getBottomTabs()
+    val mainTabs = KoggiriScreen.mainTabs
     val navController = rememberNavController()
-    var clickedItem by remember { mutableStateOf(INITIALIZE_TAB_POSITION) }
-    var stackSize by remember { mutableStateOf(0) }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val (currentScreen, setCurrentScreen) = remember { mutableStateOf(
+        KoggiriScreen.fromRoute(navBackStackEntry?.destination?.route?:KoggiriScreen.Home.title)
+    ) }
 
     Scaffold(
         topBar = {
             KoggiriTopBar(
-                nodeSize = stackSize,
+                currentScreen,
                 onClickNavigateIcon = {
-                    stackSize = navController.popBackStackAndReturnBackStack(it)
+                    if (!currentScreen.isMainTab()) {
+                        navController.popBackStack()
+                        val toIndex = navController.backQueue.indexOf(navController.currentBackStackEntry)
+                        val route = navController.backQueue[toIndex].destination.route?:""
+                        setCurrentScreen(KoggiriScreen.fromRoute(route))
+                    }
                 })
         },
         bottomBar = {
             KoggiriBottomBar(
-                bottomTabs = bottomTabs,
+                bottomTabs = mainTabs,
                 onClickItemCallback = { index ->
-                    stackSize =
-                        navController.navigateAndReturnBackStack(KoggiriScreen.fromRoute(index))
-                    clickedItem = index
+                    setCurrentScreen(KoggiriScreen.screenOf(index))
+                    navController.navigate(currentScreen.title)
                 },
-                clickedItem = clickedItem
+                currentScreen = currentScreen
             )
         }
     ) {
         KoggiriNavHost(
             navController = navController,
             onClickSaladHistoryContent = { },
-            onClickGreetingContent = { stackSize = navController.navigateAndReturnBackStack(it) },
-            onClickGreetingEdit = { stackSize = navController.navigateAndReturnBackStack(it) },
+            onClickGreetingContent = {
+                setCurrentScreen(KoggiriScreen.fromRoute(it))
+                navController.navigate(it)
+            },
+            onClickGreetingEdit = {
+                setCurrentScreen(KoggiriScreen.fromRoute(it))
+                navController.navigate(it)
+            },
             onClickStatContent = { item ->
-                stackSize =
-                    navController.navigateAndReturnBackStack("${KoggiriScreen.Home.title}/$item\"")
+                setCurrentScreen(KoggiriScreen.fromRoute(item))
+                navController.navigate("${KoggiriScreen.Home.title}/$item\"")
             },
             modifier = Modifier
         )
     }
-}
-
-fun NavHostController.navigateAndReturnBackStack(route: String): Int {
-    navigate(route)
-    return runCatching { graph.map { getBackStackEntry(graph.id) } }.getOrNull()?.size ?: 0
-}
-
-fun NavHostController.popBackStackAndReturnBackStack(action: String): Int {
-    if (action == "Menu") {
-
-    } else if (action == "Back") {
-        popBackStack()
-    }
-    return 0
 }
 
 

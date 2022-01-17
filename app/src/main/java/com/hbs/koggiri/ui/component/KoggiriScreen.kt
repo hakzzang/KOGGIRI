@@ -12,7 +12,10 @@ enum class KoggiriScreen(
 ) {
     Home("HOME", Icons.Filled.Home),
     GREETING("GREETING", Icons.Filled.Home),
-    HISTORY("HISTORY", Icons.Filled.List),
+    GREETING_DETAIL("GREETING_DETAIL", Icons.Filled.Home),
+    GREETING_EDIT("GREETING_EDIT", Icons.Filled.Home),
+    STAT_DETAIL("STAT_DETAIL", Icons.Filled.Home),
+    ASSET("ASSET", Icons.Filled.List),
     SETTING("SETTING", Icons.Filled.Settings),
     EMPTY("EMPTY", Icons.Filled.Home);
 
@@ -20,27 +23,28 @@ enum class KoggiriScreen(
         return title + append
     }
 
+    fun isMainTab(): Boolean {
+        return mainTabs.contains(this)
+    }
+
     companion object {
-        fun getBottomTabs(): List<KoggiriScreen> {
-            return listOf(Home, HISTORY, SETTING)
-        }
+        val mainTabs = listOf(Home, ASSET, SETTING)
 
-        fun fromRoute(index: Int): String {
-            when (index) {
-                0 -> return Home.title
-                1 -> return HISTORY.title
-                2 -> return SETTING.title
+        fun screenOf(index: Int): KoggiriScreen {
+            return if (mainTabs.size > index && index < 0) {
+                EMPTY
+            } else {
+                mainTabs[index]
             }
-            return Home.title
         }
 
-        fun fromRoute(title: String): KoggiriScreen {
-            return when (title) {
+        fun fromRoute(route: String): KoggiriScreen {
+            when (route) {
                 Home.title -> return Home
-                HISTORY.title -> return HISTORY
+                ASSET.title -> return ASSET
                 SETTING.title -> return SETTING
-                else -> return EMPTY
             }
+            return EMPTY
         }
     }
 }

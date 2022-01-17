@@ -12,7 +12,7 @@ import com.hbs.koggiri.ui.theme.NeutralVariant95
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun KoggiriTopBar(nodeSize: Int, onClickNavigateIcon: (String) -> Unit) {
+fun KoggiriTopBar(tab: KoggiriScreen, onClickNavigateIcon: (String) -> Unit) {
     val decayAnimationSpec = rememberSplineBasedDecay<Float>()
     val scrollBehavior = remember(decayAnimationSpec) {
         TopAppBarDefaults.exitUntilCollapsedScrollBehavior(decayAnimationSpec)
@@ -21,10 +21,10 @@ fun KoggiriTopBar(nodeSize: Int, onClickNavigateIcon: (String) -> Unit) {
         title = { Text("KOGGIRI") },
         navigationIcon = {
             IconButton(onClick = {
-                onClickNavigateIcon(if (nodeSize == 0) "Menu" else "Back")
+                onClickNavigateIcon(if (tab.isMainTab()) "Menu" else "Back")
             }) {
                 Icon(
-                    imageVector = if (nodeSize > 0) Icons.Filled.ArrowBack else Icons.Filled.Menu,
+                    imageVector = if (tab.isMainTab()) Icons.Filled.Menu else Icons.Filled.ArrowBack,
                     contentDescription = "Localized description"
                 )
             }
