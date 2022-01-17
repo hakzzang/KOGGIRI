@@ -9,8 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.getCardModifier
+import com.hbs.koggiri.ui.home.component.GalleryHistoryList
 import com.hbs.koggiri.ui.home.component.GreetingContent
-import com.hbs.koggiri.ui.home.component.SaladHistoryContent
+import com.hbs.koggiri.ui.home.component.SaladHistoryList
 import com.hbs.koggiri.ui.home.component.StatsContent
 
 @Composable
@@ -46,7 +47,11 @@ fun HomeScreenBody(
             onClickStatContent = onClickStatContent,
             modifier = Modifier.getCardModifier()
         )
-        SaladHistoryContent(
+        SaladHistoryList(
+            saladHistories = saladHistories,
+            modifier = Modifier.getCardModifier()
+        )
+        GalleryHistoryList(
             saladHistories = saladHistories,
             modifier = Modifier.getCardModifier()
         )

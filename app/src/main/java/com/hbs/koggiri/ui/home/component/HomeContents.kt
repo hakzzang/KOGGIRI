@@ -155,11 +155,32 @@ fun StatsContent(
 }
 
 @Composable
-fun SaladHistoryContent(saladHistories: List<String>, modifier: Modifier = Modifier) {
+fun SaladHistoryList(saladHistories: List<String>, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         Row {
             KoggiriMediumTitle(
                 title = "Salad History",
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentWidth(Alignment.Start)
+            )
+            Icon(
+                Icons.Filled.AddCircle,
+                contentDescription = "추가",
+                modifier = Modifier.size(32.dp)
+            )
+            Spacer(modifier = Modifier.size(12.dp))
+        }
+        CardList(saladHistories = saladHistories)
+    }
+}
+
+@Composable
+fun GalleryHistoryList(saladHistories: List<String>, modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
+        Row {
+            KoggiriMediumTitle(
+                title = "Gallery History",
                 modifier = Modifier
                     .weight(1f)
                     .wrapContentWidth(Alignment.Start)
