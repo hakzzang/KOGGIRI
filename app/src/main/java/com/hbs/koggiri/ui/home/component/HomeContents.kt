@@ -171,6 +171,6 @@ fun SaladHistoryContent(saladHistories: List<String>, modifier: Modifier = Modif
             )
             Spacer(modifier = Modifier.size(12.dp))
         }
-        SaladCardList(saladHistories = saladHistories)
+        CardList(saladHistories = saladHistories)
     }
 }

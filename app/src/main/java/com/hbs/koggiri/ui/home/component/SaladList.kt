@@ -42,16 +42,16 @@ fun WeightCard() {
 }
 
 @Composable
-fun SaladCardList(saladHistories: List<String>) {
+fun CardList(saladHistories: List<String>) {
     LazyRow {
         items(saladHistories) { date ->
-            SaladCard("salad", date, painterResource(id = R.drawable.salad01))
+            CardItem("salad", date, painterResource(id = R.drawable.salad01))
         }
     }
 }
 
 @Composable
-fun SaladCard(title: String, dateText: String, resource: Painter) {
+fun CardItem(title: String, dateText: String, resource: Painter) {
     Card(
         modifier = Modifier
             .width(212.dp)
