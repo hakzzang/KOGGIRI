@@ -1,4 +1,4 @@
-package com.hbs.koggiri.ui.component
+package com.hbs.koggiri
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home

@@ -9,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.hbs.koggiri.KoggiriScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

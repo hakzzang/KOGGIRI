@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.hbs.koggiri.KoggiriScreen
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
-import com.hbs.koggiri.ui.component.KoggiriScreen
 import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
 import com.hbs.koggiri.ui.theme.PointColor
