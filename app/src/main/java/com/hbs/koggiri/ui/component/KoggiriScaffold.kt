@@ -38,8 +38,9 @@ fun KoggiriScaffold() {
             KoggiriBottomBar(
                 bottomTabs = mainTabs,
                 onClickItemCallback = { index ->
-                    setCurrentScreen(KoggiriScreen.screenOf(index))
-                    navController.navigate(currentScreen.title)
+                    val screen = KoggiriScreen.screenOf(index)
+                    setCurrentScreen(screen)
+                    navController.navigate(screen.title)
                 },
                 currentScreen = currentScreen
             )
