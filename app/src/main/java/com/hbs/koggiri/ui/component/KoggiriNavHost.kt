@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.hbs.koggiri.KoggiriScreen
-import com.hbs.koggiri.ui.history.AssetScreenBody
+import com.hbs.koggiri.ui.history.CalendarScreenBody
 import com.hbs.koggiri.ui.home.HomeScreenBody
 import com.hbs.koggiri.ui.setting.SettingScreenBody
 import com.hbs.koggiri.ui.status.StatusDetailScreen
@@ -36,8 +36,8 @@ fun KoggiriNavHost(
                 onClickGreetingEdit = onClickGreetingEdit
             )
         }
-        composable(KoggiriScreen.ASSET.title) {
-            AssetScreenBody()
+        composable(KoggiriScreen.CALENDAR.title) {
+            CalendarScreenBody()
         }
         composable(KoggiriScreen.SETTING.title) {
             SettingScreenBody()

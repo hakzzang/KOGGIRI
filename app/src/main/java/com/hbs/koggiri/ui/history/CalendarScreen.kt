@@ -16,7 +16,7 @@ import com.hbs.koggiri.ui.home.component.SaladHistoryList
 import com.hbs.koggiri.ui.home.component.StatsContent
 
 @Composable
-fun AssetScreenBody() {
+fun CalendarScreenBody() {
     val scrollState = rememberScrollState()
     Box(
         modifier = Modifier
