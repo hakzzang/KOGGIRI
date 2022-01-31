@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.hbs.koggiri.KoggiriScreen
+import com.hbs.koggiri.models.CalendarFactory
 import com.hbs.koggiri.ui.history.CalendarScreenBody
 import com.hbs.koggiri.ui.home.HomeScreenBody
 import com.hbs.koggiri.ui.setting.SettingScreenBody
@@ -37,7 +38,10 @@ fun KoggiriNavHost(
             )
         }
         composable(KoggiriScreen.CALENDAR.title) {
-            CalendarScreenBody()
+            val calendarPresentations = CalendarFactory.getCalendarPresentations()
+            CalendarScreenBody(calendarPresentations, { calendarPresentation ->
+
+            })
         }
         composable(KoggiriScreen.SETTING.title) {
             SettingScreenBody()

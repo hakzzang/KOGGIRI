@@ -22,7 +22,7 @@ import com.hbs.koggiri.KoggiriScreen
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
 import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
-import com.hbs.koggiri.ui.theme.PointColor
+import com.hbs.koggiri.ui.theme.PointRedColor
 
 @Composable
 fun GreetingContent(
@@ -70,7 +70,7 @@ fun GreetingContent(
                     )
                     .size(40.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(PointColor)
+                    .background(PointRedColor)
                     .padding(
                         start = 8.dp,
                         top = 8.dp,
@@ -107,7 +107,7 @@ fun GreetingContent(
                     )
                     .size(40.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(PointColor.copy(alpha = 0.8f))
+                    .background(PointRedColor.copy(alpha = 0.8f))
                     .padding(
                         start = 8.dp,
                         top = 8.dp,
