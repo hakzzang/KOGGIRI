@@ -38,20 +38,6 @@ fun GreetingContent(
                     .weight(1f)
                     .wrapContentWidth(Alignment.Start)
             )
-            Icon(
-                Icons.Filled.Edit,
-                contentDescription = "편집",
-                modifier = Modifier
-                    .size(32.dp)
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberRipple(
-                            radius = 16.dp
-                        ),
-                        onClick = { onClickGreetingEdit(KoggiriScreen.GREETING + "/edit") }
-                    )
-            )
-            Spacer(modifier = Modifier.size(12.dp))
         }
         Row(
             Modifier
