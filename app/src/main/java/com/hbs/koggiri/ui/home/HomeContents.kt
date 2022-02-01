@@ -1,4 +1,4 @@
-package com.hbs.koggiri.ui.home.component
+package com.hbs.koggiri.ui.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
@@ -22,6 +21,8 @@ import com.hbs.koggiri.KoggiriScreen
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
 import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
+import com.hbs.koggiri.ui.home.component.CardList
+import com.hbs.koggiri.ui.home.routine.RoutineItemList
 import com.hbs.koggiri.ui.theme.PointRedColor
 
 @Composable
@@ -116,15 +117,15 @@ fun GreetingContent(
 }
 
 @Composable
-fun StatsContent(
-    stats: List<String>,
+fun RoutineContent(
+    routines: List<String>,
     onClickStatContent: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         Row {
             KoggiriMediumTitle(
-                title = "Your stats",
+                title = "Your routines",
                 modifier = Modifier
                     .weight(1f)
                     .wrapContentWidth(Alignment.Start)
@@ -136,7 +137,7 @@ fun StatsContent(
             )
             Spacer(modifier = Modifier.size(12.dp))
         }
-        StatItemList(stats = stats, onClickStatContent = onClickStatContent)
+        RoutineItemList(routine = routines, onClickStatContent = onClickStatContent)
     }
 }
 

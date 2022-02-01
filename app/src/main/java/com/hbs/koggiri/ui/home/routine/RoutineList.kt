@@ -1,4 +1,4 @@
-package com.hbs.koggiri.ui.home.component
+package com.hbs.koggiri.ui.home.routine
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,15 +21,15 @@ import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
 
 @Composable
-fun StatItemList(stats: List<String>, onClickStatContent: (String) -> Unit) {
-    stats.forEach {
-        StatItem(it, onClickStatContent)
+fun RoutineItemList(routine: List<String>, onClickStatContent: (String) -> Unit) {
+    routine.forEach {
+        RoutineItem(it, onClickStatContent)
     }
 }
 
 @Composable
-fun StatItem(
-    stat: String,
+fun RoutineItem(
+    routine: String,
     onClickStatContent: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -37,7 +37,7 @@ fun StatItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable(
-                onClick = { onClickStatContent(stat) },
+                onClick = { onClickStatContent(routine) },
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple()
             )
@@ -74,7 +74,7 @@ fun StatItem(
                 .align(Alignment.CenterVertically)
                 .wrapContentWidth()
         ) {
-            OneItemTitle(stat)
+            OneItemTitle(routine)
             OneItemBody("샐러드 먹기")
         }
         LayoutGravityEndText("100")

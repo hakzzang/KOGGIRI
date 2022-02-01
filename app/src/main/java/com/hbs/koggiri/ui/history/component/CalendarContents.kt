@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.models.CalendarPresentation
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
 import com.hbs.koggiri.ui.component.KoggiriSmallText
-import com.hbs.koggiri.ui.home.component.StatItemList
+import com.hbs.koggiri.ui.home.routine.RoutineItemList
 import com.hbs.koggiri.ui.theme.PointBlueColor
 import com.hbs.koggiri.ui.theme.PointRedColor
 
@@ -57,7 +57,7 @@ fun CalendarContent(
                 )
                 Spacer(modifier = Modifier.size(12.dp))
             }
-            StatItemList(stats = stats, onClickStatContent = { })
+            RoutineItemList(routine = stats, onClickStatContent = { })
         }
     }
 }

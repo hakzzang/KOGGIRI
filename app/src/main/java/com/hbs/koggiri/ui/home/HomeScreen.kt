@@ -9,10 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.getCardModifier
-import com.hbs.koggiri.ui.home.component.GalleryHistoryList
-import com.hbs.koggiri.ui.home.component.GreetingContent
-import com.hbs.koggiri.ui.home.component.SaladHistoryList
-import com.hbs.koggiri.ui.home.component.StatsContent
 
 @Composable
 fun HomeScreenBody(
@@ -30,7 +26,7 @@ fun HomeScreenBody(
         "2022년 1월 6일"
     )
 
-    val stats = listOf(
+    val routines = listOf(
         "Days Running",
         "Days Eating Salad",
         "Days Watching Calmdown Man"
@@ -42,8 +38,8 @@ fun HomeScreenBody(
             onClickGreetingEdit = onClickGreetingEdit,
             modifier = Modifier.getCardModifier()
         )
-        StatsContent(
-            stats = stats,
+        RoutineContent(
+            routines = routines,
             onClickStatContent = onClickStatContent,
             modifier = Modifier.getCardModifier()
         )

@@ -41,7 +41,7 @@ fun KoggiriNavHost(
             val calendarPresentations = CalendarFactory.getCalendarPresentations()
             CalendarScreenBody(calendarPresentations, { calendarPresentation ->
 
-            })
+            }, Modifier.getCardModifier())
         }
         composable(KoggiriScreen.SETTING.title) {
             SettingScreenBody()
