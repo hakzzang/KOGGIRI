@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.KoggiriScreen
+import com.hbs.koggiri.models.RoutinePresentation
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
 import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
@@ -119,7 +120,7 @@ fun GreetingContent(
 @Composable
 fun RoutineContent(
     uiState: HomeUiState,
-    onClickStatContent: (String) -> Unit,
+    onClickRoutineContent: (RoutinePresentation) -> Unit,
     modifier: Modifier = Modifier
 ) {
     if (uiState is HomeUiState.NoAssets) {
@@ -141,7 +142,7 @@ fun RoutineContent(
             )
             Spacer(modifier = Modifier.size(12.dp))
         }
-        RoutineItemList(routine = assets.routines, onClickStatContent = onClickStatContent)
+        RoutineItemList(routine = assets.routines, onClickRoutineContent = onClickRoutineContent)
     }
 }
 

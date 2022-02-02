@@ -23,16 +23,16 @@ import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
 
 @Composable
-fun RoutineItemList(routine: List<RoutinePresentation>, onClickStatContent: (String) -> Unit) {
+fun RoutineItemList(routine: List<RoutinePresentation>, onClickRoutineContent: (RoutinePresentation) -> Unit) {
     routine.forEach {
-        RoutineItem(it, onClickStatContent, {})
+        RoutineItem(it, onClickRoutineContent, {})
     }
 }
 
 @Composable
 fun RoutineItem(
     routine: RoutinePresentation,
-    onClickRoutineContent: (String) -> Unit,
+    onClickRoutineContent: (RoutinePresentation) -> Unit,
     onClickAddRoutine: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -40,7 +40,7 @@ fun RoutineItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable(
-                onClick = { onClickRoutineContent(routine.title) },
+                onClick = { onClickRoutineContent(routine) },
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple()
             )

@@ -5,6 +5,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import com.hbs.koggiri.models.RoutinePresentation
 
 @Composable
 fun HomeRoute(
@@ -15,7 +16,9 @@ fun HomeRoute(
 
     HomeRoute(
         uiState = uiState,
-        onClickStatContent = { },
+        onClickRoutineContent = { routine ->
+            homeViewModel.clickRoutineContent(routine)
+        },
         onClickSaladHistoryContent = {},
         onClickGreetingContent = { },
         onClickGreetingEdit = { },
@@ -29,7 +32,7 @@ fun HomeRoute(
     onClickSaladHistoryContent: () -> Unit,
     onClickGreetingContent: (String) -> Unit,
     onClickGreetingEdit: (String) -> Unit,
-    onClickStatContent: (String) -> Unit,
+    onClickRoutineContent: (RoutinePresentation) -> Unit,
     scaffoldState: ScaffoldState
 ) {
     when (getHomeScreenType(uiState)) {
@@ -49,8 +52,10 @@ fun HomeRoute(
         HomeScreenType.Main -> {
             HomeScreen(
                 uiState = uiState,
-                onClickStatContent = onClickStatContent,
-                onClickSaladHistoryContent = {},
+                onClickRoutineContent = onClickRoutineContent,
+                onClickSaladHistoryContent = {
+
+                },
                 onClickGreetingContent = onClickGreetingContent,
                 onClickGreetingEdit = onClickGreetingEdit
             )
@@ -58,11 +63,14 @@ fun HomeRoute(
         HomeScreenType.Loading -> {
             HomeScreen(
                 uiState = uiState,
-                onClickStatContent = onClickStatContent,
+                onClickRoutineContent = onClickRoutineContent,
                 onClickSaladHistoryContent = {},
                 onClickGreetingContent = onClickGreetingContent,
                 onClickGreetingEdit = onClickGreetingEdit
             )
+        }
+        HomeScreenType.HomeWithDetail -> {
+
         }
     }
 }
@@ -80,6 +88,9 @@ private fun getHomeScreenType(uiState: HomeUiState): HomeScreenType {
         }
         is HomeUiState.NoAssets -> {
             HomeScreenType.Loading
+        }
+        is HomeUiState.HasDetailAssets -> {
+            HomeScreenType.HomeWithDetail
         }
     }
 }

@@ -22,16 +22,28 @@ sealed interface HomeUiState {
         val routines: List<RoutinePresentation>,
         override val isLoading: Boolean = false
     ) : HomeUiState
+
+    data class HasDetailAssets(
+        val searchTitle: String,
+        val routines: List<RoutinePresentation> = emptyList(),
+        override val isLoading: Boolean = false
+    ) : HomeUiState
 }
 
 private data class HomeViewModelState(
     val home: HomePresentations? = null,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val isClickDetail: Boolean = false,
+    val searchTitle: String = ""
 ) {
     fun toUiState() = if (home == null) {
         HomeUiState.NoAssets(isLoading = isLoading)
     } else {
-        HomeUiState.HasAssets(routines = home.routinePresentation, isLoading = isLoading)
+        if (isClickDetail) {
+            HomeUiState.HasDetailAssets(searchTitle = searchTitle, isLoading = isLoading)
+        } else {
+            HomeUiState.HasAssets(routines = home.routinePresentation, isLoading = isLoading)
+        }
     }
 }
 
@@ -65,6 +77,14 @@ class HomeViewModel(
                     is Result.Error -> state.copy(isLoading = true)
                 }
             }
+        }
+    }
+
+    fun clickRoutineContent(routine: RoutinePresentation) {
+        viewModelState.update {
+            it.copy(
+                isClickDetail = true
+            )
         }
     }
 

@@ -8,12 +8,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.hbs.koggiri.models.RoutinePresentation
 import com.hbs.koggiri.ui.component.getCardModifier
 
 @Composable
 fun HomeScreen(
     uiState: HomeUiState,
-    onClickStatContent: (String) -> Unit,
+    onClickRoutineContent: (RoutinePresentation) -> Unit,
     onClickSaladHistoryContent: () -> Unit,
     onClickGreetingContent: (String) -> Unit,
     onClickGreetingEdit: (String) -> Unit
@@ -36,7 +37,7 @@ fun HomeScreen(
         )
         RoutineContent(
             uiState = uiState,
-            onClickStatContent = onClickStatContent,
+            onClickRoutineContent = onClickRoutineContent,
             modifier = Modifier.getCardModifier()
         )
         SaladHistoryList(
