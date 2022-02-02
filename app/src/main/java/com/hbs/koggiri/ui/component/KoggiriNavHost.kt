@@ -2,40 +2,36 @@ package com.hbs.koggiri.ui.component
 
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
+import com.hbs.data.routine.RoutineRepositoryImpl
 import com.hbs.koggiri.KoggiriScreen
 import com.hbs.koggiri.models.CalendarFactory
 import com.hbs.koggiri.ui.history.CalendarScreenBody
-import com.hbs.koggiri.ui.home.HomeScreenBody
+import com.hbs.koggiri.ui.home.HomeRoute
+import com.hbs.koggiri.ui.home.HomeViewModel
 import com.hbs.koggiri.ui.setting.SettingScreenBody
 import com.hbs.koggiri.ui.status.StatusDetailScreen
 
 @Composable
 fun KoggiriNavHost(
     navController: NavHostController,
-    onClickSaladHistoryContent: () -> Unit,
-    onClickGreetingContent: (String) -> Unit,
-    onClickGreetingEdit: (String) -> Unit,
-    onClickStatContent: (String) -> Unit,
-    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
         startDestination = KoggiriScreen.Home.title,
-        modifier = modifier
+        modifier = Modifier
     ) {
         composable(KoggiriScreen.Home.title) {
-            HomeScreenBody(
-                onClickStatContent = onClickStatContent,
-                onClickSaladHistoryContent = {},
-                onClickGreetingContent = onClickGreetingContent,
-                onClickGreetingEdit = onClickGreetingEdit
+            val homeViewModel: HomeViewModel = viewModel(
+                factory = HomeViewModel.provideFactory(RoutineRepositoryImpl())
             )
+            HomeRoute(homeViewModel)
         }
         composable(KoggiriScreen.CALENDAR.title) {
             val calendarPresentations = CalendarFactory.getCalendarPresentations()

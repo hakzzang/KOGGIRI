@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.getCardModifier
 
 @Composable
-fun HomeScreenBody(
+fun HomeScreen(
     onClickStatContent: (String) -> Unit,
     onClickSaladHistoryContent: () -> Unit,
     onClickGreetingContent: (String) -> Unit,
