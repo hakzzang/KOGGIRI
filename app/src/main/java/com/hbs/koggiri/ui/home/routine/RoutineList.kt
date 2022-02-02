@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.hbs.koggiri.KoggiriScreen
 import com.hbs.koggiri.ui.component.LayoutGravityEndText
 import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
@@ -23,21 +24,22 @@ import com.hbs.koggiri.ui.component.OneItemTitle
 @Composable
 fun RoutineItemList(routine: List<String>, onClickStatContent: (String) -> Unit) {
     routine.forEach {
-        RoutineItem(it, onClickStatContent)
+        RoutineItem(it, onClickStatContent, {})
     }
 }
 
 @Composable
 fun RoutineItem(
     routine: String,
-    onClickStatContent: (String) -> Unit,
+    onClickRoutineContent: (String) -> Unit,
+    onClickAddRoutine: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .clickable(
-                onClick = { onClickStatContent(routine) },
+                onClick = { onClickRoutineContent(routine) },
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple()
             )
@@ -50,16 +52,16 @@ fun RoutineItem(
                 .size(40.dp)
                 .clip(RoundedCornerShape(12.dp))
                 .background(MaterialTheme.colorScheme.secondaryContainer)
-                .padding(
-                    start = 8.dp,
-                    top = 8.dp,
-                    end = 8.dp,
-                    bottom = 8.dp
-                )
+                .padding(8.dp)
         ) {
             Icon(
                 imageVector = Icons.Filled.Check,
-                contentDescription = "Check"
+                contentDescription = "Check",
+                modifier = Modifier.clickable(
+                    onClick = { onClickAddRoutine(KoggiriScreen.GREETING + "/content/ALL") },
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple()
+                )
             )
         }
         Column(
