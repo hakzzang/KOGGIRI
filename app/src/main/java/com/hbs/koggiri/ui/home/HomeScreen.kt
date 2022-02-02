@@ -12,6 +12,7 @@ import com.hbs.koggiri.ui.component.getCardModifier
 
 @Composable
 fun HomeScreen(
+    uiState: HomeUiState,
     onClickStatContent: (String) -> Unit,
     onClickSaladHistoryContent: () -> Unit,
     onClickGreetingContent: (String) -> Unit,
@@ -26,11 +27,6 @@ fun HomeScreen(
         "2022년 1월 6일"
     )
 
-    val routines = listOf(
-        "Days Running",
-        "Days Eating Salad",
-        "Days Watching Calmdown Man"
-    )
     val scrollState = rememberScrollState()
     Column(Modifier.verticalScroll(scrollState)) {
         GreetingContent(
@@ -39,7 +35,7 @@ fun HomeScreen(
             modifier = Modifier.getCardModifier()
         )
         RoutineContent(
-            routines = routines,
+            uiState = uiState,
             onClickStatContent = onClickStatContent,
             modifier = Modifier.getCardModifier()
         )

@@ -48,6 +48,7 @@ fun HomeRoute(
 //        }
         HomeScreenType.Main -> {
             HomeScreen(
+                uiState = uiState,
                 onClickStatContent = onClickStatContent,
                 onClickSaladHistoryContent = {},
                 onClickGreetingContent = onClickGreetingContent,
@@ -56,6 +57,7 @@ fun HomeRoute(
         }
         HomeScreenType.Loading -> {
             HomeScreen(
+                uiState = uiState,
                 onClickStatContent = onClickStatContent,
                 onClickSaladHistoryContent = {},
                 onClickGreetingContent = onClickGreetingContent,

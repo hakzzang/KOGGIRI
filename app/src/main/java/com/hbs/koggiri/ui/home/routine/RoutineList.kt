@@ -17,12 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.KoggiriScreen
+import com.hbs.koggiri.models.RoutinePresentation
 import com.hbs.koggiri.ui.component.LayoutGravityEndText
 import com.hbs.koggiri.ui.component.OneItemBody
 import com.hbs.koggiri.ui.component.OneItemTitle
 
 @Composable
-fun RoutineItemList(routine: List<String>, onClickStatContent: (String) -> Unit) {
+fun RoutineItemList(routine: List<RoutinePresentation>, onClickStatContent: (String) -> Unit) {
     routine.forEach {
         RoutineItem(it, onClickStatContent, {})
     }
@@ -30,7 +31,7 @@ fun RoutineItemList(routine: List<String>, onClickStatContent: (String) -> Unit)
 
 @Composable
 fun RoutineItem(
-    routine: String,
+    routine: RoutinePresentation,
     onClickRoutineContent: (String) -> Unit,
     onClickAddRoutine: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -39,7 +40,7 @@ fun RoutineItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable(
-                onClick = { onClickRoutineContent(routine) },
+                onClick = { onClickRoutineContent(routine.title) },
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple()
             )
@@ -76,10 +77,10 @@ fun RoutineItem(
                 .align(Alignment.CenterVertically)
                 .wrapContentWidth()
         ) {
-            OneItemTitle(routine)
-            OneItemBody("샐러드 먹기")
+            OneItemTitle(routine.title)
+            OneItemBody(routine.memo)
         }
-        LayoutGravityEndText("100")
+        LayoutGravityEndText(routine.completedCount.toString())
     }
 }
 

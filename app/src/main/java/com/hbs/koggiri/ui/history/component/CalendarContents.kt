@@ -57,7 +57,7 @@ fun CalendarContent(
                 )
                 Spacer(modifier = Modifier.size(12.dp))
             }
-            RoutineItemList(routine = stats, onClickStatContent = { })
+//            RoutineItemList(routine = stats) { }
         }
     }
 }

@@ -118,10 +118,14 @@ fun GreetingContent(
 
 @Composable
 fun RoutineContent(
-    routines: List<String>,
+    uiState: HomeUiState,
     onClickStatContent: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    if (uiState is HomeUiState.NoAssets) {
+        return
+    }
+    val assets = uiState as HomeUiState.HasAssets
     Column(modifier = modifier) {
         Row {
             KoggiriMediumTitle(
@@ -137,7 +141,7 @@ fun RoutineContent(
             )
             Spacer(modifier = Modifier.size(12.dp))
         }
-        RoutineItemList(routine = routines, onClickStatContent = onClickStatContent)
+        RoutineItemList(routine = assets.routines, onClickStatContent = onClickStatContent)
     }
 }
 
