@@ -6,6 +6,9 @@ data class Routine(
     val completeDates: List<RoutineComplete>
 ) {
     val lastCompleteDate : String get() {
+        if(completeDates.isEmpty()) {
+            return ""
+        }
         return completeDates.last().date
     }
 }
