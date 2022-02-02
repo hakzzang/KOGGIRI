@@ -12,8 +12,8 @@ fun String.isToday(): Boolean {
 }
 
 fun String.toLocalDate(): LocalDate? {
-    if(isNullOrEmpty()) {
-        return LocalDate.of(2000,1,1)
+    if (isNullOrEmpty()) {
+        return LocalDate.of(2000, 1, 1)
     }
     return LocalDate.parse(this)
 }
