@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.hbs.koggiri.models.RoutinePresentation
+import com.hbs.koggiri.ui.status.StatusDetailScreen
 
 @Composable
 fun HomeRoute(
@@ -19,9 +20,9 @@ fun HomeRoute(
         onClickRoutineContent = { routine ->
             homeViewModel.clickRoutineContent(routine)
         },
-        onClickSaladHistoryContent = {},
         onClickGreetingContent = { },
         onClickGreetingEdit = { },
+        onCompleteHomeDetail = { },
         scaffoldState = scaffoldState
     )
 }
@@ -29,26 +30,13 @@ fun HomeRoute(
 @Composable
 fun HomeRoute(
     uiState: HomeUiState,
-    onClickSaladHistoryContent: () -> Unit,
     onClickGreetingContent: (String) -> Unit,
     onClickGreetingEdit: (String) -> Unit,
     onClickRoutineContent: (RoutinePresentation) -> Unit,
+    onCompleteHomeDetail: (Boolean) -> Unit,
     scaffoldState: ScaffoldState
 ) {
     when (getHomeScreenType(uiState)) {
-//        onClickSaladHistoryContent = { },
-//        onClickGreetingContent = {
-//            setCurrentScreen(KoggiriScreen.fromRoute(it))
-//            navController.navigate(it)
-//        },
-//        onClickGreetingEdit = {
-//            setCurrentScreen(KoggiriScreen.fromRoute(it))
-//            navController.navigate(it)
-//        },
-//        onClickStatContent = { item ->
-//            setCurrentScreen(KoggiriScreen.fromRoute(item))
-//            navController.navigate("${KoggiriScreen.Home.title}/$item\"")
-//        }
         HomeScreenType.Main -> {
             HomeScreen(
                 uiState = uiState,
@@ -70,7 +58,11 @@ fun HomeRoute(
             )
         }
         HomeScreenType.HomeWithDetail -> {
-
+            StatusDetailScreen(
+                title = "Hello",
+                isComplete = true,
+                onComplete = onCompleteHomeDetail
+            )
         }
     }
 }
