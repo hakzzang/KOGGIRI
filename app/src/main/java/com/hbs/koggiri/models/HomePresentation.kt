@@ -1,7 +1,7 @@
 package com.hbs.koggiri.models
 
 data class HomePresentations(
-    val routinePresentation: List<RoutinePresentation>
+    val routinePresentations: List<RoutinePresentation>
 )
 
 data class RoutinePresentation(

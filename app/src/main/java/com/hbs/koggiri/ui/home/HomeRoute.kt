@@ -58,11 +58,13 @@ fun HomeRoute(
             )
         }
         HomeScreenType.HomeWithDetail -> {
-            StatusDetailScreen(
-                title = "Hello",
-                isComplete = true,
-                onComplete = onCompleteHomeDetail
-            )
+            if(uiState is HomeUiState.HasDetailAssets) {
+                StatusDetailScreen(
+                    title = uiState.routine.title,
+                    isComplete = true,
+                    onComplete = onCompleteHomeDetail
+                )
+            }
         }
     }
 }
