@@ -19,9 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.KoggiriScreen
 import com.hbs.koggiri.models.RoutinePresentation
-import com.hbs.koggiri.ui.component.KoggiriMediumTitle
-import com.hbs.koggiri.ui.component.OneItemBody
-import com.hbs.koggiri.ui.component.OneItemTitle
+import com.hbs.koggiri.ui.component.*
 import com.hbs.koggiri.ui.home.component.CardList
 import com.hbs.koggiri.ui.home.routine.RoutineItemList
 import com.hbs.koggiri.ui.theme.PointRedColor
@@ -119,6 +117,7 @@ fun GreetingContent(
 
 @Composable
 fun RoutineContent(
+    title: String,
     uiState: HomeUiState,
     onClickRoutineContent: (RoutinePresentation) -> Unit,
     modifier: Modifier = Modifier
@@ -128,20 +127,7 @@ fun RoutineContent(
     }
     val assets = uiState as HomeUiState.HasAssets
     Column(modifier = modifier) {
-        Row {
-            KoggiriMediumTitle(
-                title = "Your routines",
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentWidth(Alignment.Start)
-            )
-            Icon(
-                Icons.Filled.AddCircle,
-                contentDescription = "추가",
-                modifier = Modifier.size(32.dp)
-            )
-            Spacer(modifier = Modifier.size(12.dp))
-        }
+        MediumTitleWithIcon(title = title, onClickIcon = { })
         RoutineItemList(routine = assets.routines, onClickRoutineContent = onClickRoutineContent)
     }
 }
@@ -149,20 +135,7 @@ fun RoutineContent(
 @Composable
 fun SaladHistoryList(saladHistories: List<String>, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
-        Row {
-            KoggiriMediumTitle(
-                title = "Salad History",
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentWidth(Alignment.Start)
-            )
-            Icon(
-                Icons.Filled.AddCircle,
-                contentDescription = "추가",
-                modifier = Modifier.size(32.dp)
-            )
-            Spacer(modifier = Modifier.size(12.dp))
-        }
+        MediumTitleWithIcon(title = "Salad History", onClickIcon = { })
         CardList(saladHistories = saladHistories)
     }
 }
@@ -170,20 +143,7 @@ fun SaladHistoryList(saladHistories: List<String>, modifier: Modifier = Modifier
 @Composable
 fun GalleryHistoryList(saladHistories: List<String>, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
-        Row {
-            KoggiriMediumTitle(
-                title = "Gallery History",
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentWidth(Alignment.Start)
-            )
-            Icon(
-                Icons.Filled.AddCircle,
-                contentDescription = "추가",
-                modifier = Modifier.size(32.dp)
-            )
-            Spacer(modifier = Modifier.size(12.dp))
-        }
+        MediumTitleWithIcon(title = "Gallery History", onClickIcon = { })
         CardList(saladHistories = saladHistories)
     }
 }

@@ -1,9 +1,16 @@
 package com.hbs.koggiri.ui.component
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,6 +50,29 @@ fun KoggiriMediumTitle(
                 end = MEDIUM_CONTAINER_SIDE_PADDING
             )
     )
+}
+
+@Composable
+fun MediumTitleWithIcon(title: String, onClickIcon: () -> Unit) {
+    Row {
+        KoggiriMediumTitle(
+            title = title,
+            modifier = Modifier
+                .weight(1f)
+                .wrapContentWidth(Alignment.Start)
+        )
+        Icon(
+            Icons.Filled.AddCircle,
+            contentDescription = "추가",
+            modifier = Modifier.size(32.dp)
+                .clickable(
+                    onClick = onClickIcon,
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberRipple()
+                )
+        )
+        Spacer(modifier = Modifier.size(12.dp))
+    }
 }
 
 @Composable

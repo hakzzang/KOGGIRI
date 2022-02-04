@@ -33,7 +33,6 @@ import com.hbs.koggiri.ui.theme.NeutralVariant95
 
 @Composable
 fun StatusDetailScreen(
-    uiState: HomeUiState,
     title: String,
     isComplete: Boolean,
     onComplete: (Boolean) -> Unit,

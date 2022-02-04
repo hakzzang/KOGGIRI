@@ -36,6 +36,7 @@ fun HomeScreen(
             modifier = Modifier.getCardModifier()
         )
         RoutineContent(
+            title = "Your routine",
             uiState = uiState,
             onClickRoutineContent = onClickRoutineContent,
             modifier = Modifier.getCardModifier()
