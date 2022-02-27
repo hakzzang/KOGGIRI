@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.models.CalendarPresentation
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
 import com.hbs.koggiri.ui.component.KoggiriSmallText
-import com.hbs.koggiri.ui.home.routine.RoutineItemList
 import com.hbs.koggiri.ui.theme.PointBlueColor
 import com.hbs.koggiri.ui.theme.PointRedColor
 
