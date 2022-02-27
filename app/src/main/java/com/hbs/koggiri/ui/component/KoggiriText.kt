@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -34,7 +35,9 @@ fun KoggiriLargeTitle(title: String, modifier: Modifier = Modifier) {
 fun KoggiriMediumTitle(
     title: String,
     color: Color = MaterialTheme.colorScheme.onSurface,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    height: Dp = MEDIUM_CONTAINER_HEIGHT,
+    sidePadding: Dp = MEDIUM_CONTAINER_SIDE_PADDING
 ) {
     Text(
         title,
@@ -44,10 +47,10 @@ fun KoggiriMediumTitle(
         ),
         modifier = modifier
             .wrapContentWidth()
-            .height(MEDIUM_CONTAINER_HEIGHT)
+            .height(height)
             .padding(
-                start = MEDIUM_CONTAINER_SIDE_PADDING,
-                end = MEDIUM_CONTAINER_SIDE_PADDING
+                start = sidePadding,
+                end = sidePadding
             )
     )
 }
@@ -79,7 +82,8 @@ fun MediumTitleWithIcon(title: String, onClickIcon: () -> Unit) {
 fun KoggiriSmallText(
     title: String,
     color: Color = MaterialTheme.colorScheme.onSurface,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    sidePadding: Dp = MEDIUM_CONTAINER_SIDE_PADDING
 ) {
     Text(
         title,
@@ -91,8 +95,8 @@ fun KoggiriSmallText(
             .wrapContentWidth()
             .wrapContentHeight()
             .padding(
-                start = MEDIUM_CONTAINER_SIDE_PADDING,
-                end = MEDIUM_CONTAINER_SIDE_PADDING
+                start = sidePadding,
+                end = sidePadding
             )
     )
 }
