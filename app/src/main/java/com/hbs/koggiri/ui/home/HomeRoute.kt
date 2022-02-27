@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.hbs.koggiri.models.RoutinePresentation
-import com.hbs.koggiri.ui.status.StatusDetailScreen
+import com.hbs.koggiri.ui.routine.RoutineEditScreen
 
 @Composable
 fun HomeRoute(
@@ -58,11 +58,10 @@ fun HomeRoute(
             )
         }
         HomeScreenType.HomeWithDetail -> {
-            if(uiState is HomeUiState.HasDetailAssets) {
-                StatusDetailScreen(
-                    title = uiState.routine.title,
-                    isComplete = true,
-                    onComplete = onCompleteHomeDetail
+            if (uiState is HomeUiState.HasDetailAssets) {
+                RoutineEditScreen(
+                    title = "What are you goals?",
+                    subtitle = "Select all that apply"
                 )
             }
         }

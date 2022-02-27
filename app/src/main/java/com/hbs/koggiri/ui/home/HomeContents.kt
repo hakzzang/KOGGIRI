@@ -6,7 +6,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
@@ -21,7 +20,7 @@ import com.hbs.koggiri.KoggiriScreen
 import com.hbs.koggiri.models.RoutinePresentation
 import com.hbs.koggiri.ui.component.*
 import com.hbs.koggiri.ui.home.component.CardList
-import com.hbs.koggiri.ui.home.routine.RoutineItemList
+import com.hbs.koggiri.ui.home.component.RoutineItemList
 import com.hbs.koggiri.ui.theme.PointRedColor
 
 @Composable
