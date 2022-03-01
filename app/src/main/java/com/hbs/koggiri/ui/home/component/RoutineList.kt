@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.ripple.rememberRipple
@@ -17,8 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -139,6 +139,7 @@ fun SelectionRoutineList(
     selectionRoutines: List<SelectionRoutinePresentation> = listOf(),
     modifier: Modifier = Modifier,
 ) {
+    var selectionPosition by remember { mutableStateOf(0) }
     LazyVerticalGrid(
         cells = GridCells.Fixed(GRID_CELL_COUNT),
         modifier = modifier,
@@ -147,15 +148,17 @@ fun SelectionRoutineList(
         items(selectionRoutines.size) { index ->
             val (title, resource) = selectionRoutines[index]
             SelectionRoutineItem(
-                selectedPosition = 0,
+                selectedPosition = selectionPosition,
                 position = index,
                 resource = painterResource(resource),
-                title = title
+                title = title,
+                onClick = { position -> selectionPosition = position}
             )
         }
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SelectionRoutineItem(
     selectedPosition: Int = 0,
@@ -168,7 +171,8 @@ fun SelectionRoutineItem(
         .padding(horizontal = 4.dp, vertical = 4.dp),
     roundedCornerShape: RoundedCornerShape = RoundedCornerShape(12.dp),
     elevation: Dp = 2.dp,
-    cardColor: Color = Color.White
+    cardColor: Color = Color.White,
+    onClick: ((Int) -> Unit)? = null
 ) {
     val selectedColor = if (position == selectedPosition) {
         PointBlueColor
@@ -180,7 +184,8 @@ fun SelectionRoutineItem(
         modifier = modifier,
         elevation = elevation,
         backgroundColor = cardColor,
-        border = BorderStroke(2.dp, selectedColor)
+        border = BorderStroke(2.dp, selectedColor),
+        onClick = { onClick?.invoke(position) }
     ) {
         Box(
             modifier = Modifier.fillMaxSize(),

@@ -2,7 +2,10 @@ package com.hbs.koggiri.ui.routine
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -33,11 +36,21 @@ fun RoutineEditContents(
             .fillMaxSize()
             .background(NeutralVariant95)
     ) {
-        Column(Modifier.getCardModifier()) {
+        Column(
+            Modifier
+                .getCardModifier()
+                .fillMaxHeight(0.95f)) {
             KoggiriMediumTitle(title = title, height = 32.dp)
             KoggiriSmallText(title = subtitle, color = Color.LightGray)
             Spacer(Modifier.height(16.dp))
             SelectionRoutineList(selectionRoutines)
+            Box(Modifier.fillMaxHeight(), contentAlignment = Alignment.BottomCenter) {
+                FilledTonalButton(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                    onClick = { /*TODO*/ }) {
+                    Text("Done")
+                }
+            }
         }
     }
 
