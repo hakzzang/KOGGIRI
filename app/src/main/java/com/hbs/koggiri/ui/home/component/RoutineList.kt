@@ -140,7 +140,7 @@ fun SelectionRoutineList(
     modifier: Modifier = Modifier,
 ) {
     LazyVerticalGrid(
-        cells = GridCells.Fixed(2),
+        cells = GridCells.Fixed(GRID_CELL_COUNT),
         modifier = modifier,
         contentPadding = PaddingValues(horizontal = 4.dp)
     ) {
@@ -165,7 +165,7 @@ fun SelectionRoutineItem(
     modifier: Modifier = Modifier
         .fillMaxWidth()
         .height(172.dp)
-        .padding(horizontal = 12.dp, vertical = 4.dp),
+        .padding(horizontal = 4.dp, vertical = 4.dp),
     roundedCornerShape: RoundedCornerShape = RoundedCornerShape(12.dp),
     elevation: Dp = 2.dp,
     cardColor: Color = Color.White
@@ -211,3 +211,4 @@ fun SelectionRoutineItem(
 private val STAT_ITEM_CONTAINER_HEIGHT = 56.dp
 private val STAT_ITEM_SIDE_PADDING = 16.dp
 private val STAT_ITEM_TOP_BOTTOM_PADDING = 8.dp
+private const val GRID_CELL_COUNT = 3
