@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.hbs.koggiri.models.RoutinePresentation
+import com.hbs.koggiri.ui.home.state.HomeUiState
 import com.hbs.koggiri.ui.routine.RoutineEditScreen
 
 @Composable
@@ -57,11 +58,12 @@ fun HomeRoute(
                 onClickGreetingEdit = onClickGreetingEdit
             )
         }
-        HomeScreenType.HomeWithDetail -> {
+        HomeScreenType.EditPage -> {
             if (uiState is HomeUiState.HasDetailAssets) {
                 RoutineEditScreen(
                     title = "What are you goals?",
-                    subtitle = "Select all that apply"
+                    subtitle = "Select all that apply",
+                    uiState = uiState
                 )
             }
         }
@@ -70,7 +72,7 @@ fun HomeRoute(
 
 private enum class HomeScreenType {
     Main,
-    HomeWithDetail,
+    EditPage,
     Loading
 }
 
@@ -83,7 +85,7 @@ private fun getHomeScreenType(uiState: HomeUiState): HomeScreenType {
             HomeScreenType.Loading
         }
         is HomeUiState.HasDetailAssets -> {
-            HomeScreenType.HomeWithDetail
+            HomeScreenType.EditPage
         }
     }
 }

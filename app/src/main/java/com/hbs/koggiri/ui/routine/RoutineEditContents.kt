@@ -14,13 +14,14 @@ import com.hbs.koggiri.models.SelectionRoutinePresentation
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
 import com.hbs.koggiri.ui.component.KoggiriSmallText
 import com.hbs.koggiri.ui.component.getCardModifier
-import com.hbs.koggiri.ui.home.component.SelectionRoutineList
+import com.hbs.koggiri.ui.home.state.HomeUiState
 import com.hbs.koggiri.ui.theme.NeutralVariant95
 
 @Composable
 fun RoutineEditContents(
     title: String,
-    subtitle: String
+    subtitle: String,
+    uiState: HomeUiState.HasDetailAssets?
 ) {
     val selectionRoutines = listOf(
         SelectionRoutinePresentation("Lose Weight", R.drawable.weight_lifting),
@@ -43,12 +44,20 @@ fun RoutineEditContents(
             KoggiriMediumTitle(title = title, height = 32.dp)
             KoggiriSmallText(title = subtitle, color = Color.LightGray)
             Spacer(Modifier.height(16.dp))
-            SelectionRoutineList(selectionRoutines)
+//            if(uiState.)
+//            if(step.value == 0) {
+//                SelectionRoutineList(selectionRoutines)
+//            } else {
+//                KoggiriSmallText(title = subtitle, color = Color.LightGray)
+//            }
+
             Box(Modifier.fillMaxHeight(), contentAlignment = Alignment.BottomCenter) {
                 FilledTonalButton(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-                    onClick = { /*TODO*/ }) {
-                    Text("Done")
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    onClick = { /*step.value = 1*/ }) {
+                    Text("Continue")
                 }
             }
         }

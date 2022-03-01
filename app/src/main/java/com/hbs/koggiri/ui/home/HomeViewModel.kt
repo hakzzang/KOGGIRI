@@ -8,27 +8,9 @@ import com.hbs.data.routine.RoutineRepository
 import com.hbs.koggiri.mappers.toPresentation
 import com.hbs.koggiri.models.HomePresentations
 import com.hbs.koggiri.models.RoutinePresentation
+import com.hbs.koggiri.ui.home.state.HomeUiState
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-
-sealed interface HomeUiState {
-    val isLoading: Boolean
-
-    data class NoAssets(
-        override val isLoading: Boolean = true
-    ) : HomeUiState
-
-    data class HasAssets(
-        val routines: List<RoutinePresentation>,
-        override val isLoading: Boolean = false
-    ) : HomeUiState
-
-    data class HasDetailAssets(
-        val routines: List<RoutinePresentation> = emptyList(),
-        val routine: RoutinePresentation,
-        override val isLoading: Boolean = false
-    ) : HomeUiState
-}
 
 private data class HomeViewModelState(
     val home: HomePresentations? = null,

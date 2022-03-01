@@ -1,9 +1,8 @@
 package com.hbs.koggiri.ui.routine
 
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.hbs.koggiri.ui.home.state.HomeUiState
 
 @Preview
 @Composable
@@ -16,10 +15,12 @@ fun PreviewEditScreen() {
 @Composable
 fun RoutineEditScreen(
     title: String,
-    subtitle: String
+    subtitle: String,
+    uiState: HomeUiState.HasDetailAssets? = null
 ) {
     RoutineEditContents(
         title = title,
-        subtitle = subtitle
+        subtitle = subtitle,
+        uiState = uiState
     )
 }

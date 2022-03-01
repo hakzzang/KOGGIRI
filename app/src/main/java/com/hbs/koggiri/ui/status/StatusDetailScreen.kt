@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.ui.component.KoggiriMediumTitle
-import com.hbs.koggiri.ui.home.HomeUiState
 import com.hbs.koggiri.ui.theme.Green500
 import com.hbs.koggiri.ui.theme.NeutralVariant95
 

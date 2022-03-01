@@ -21,6 +21,7 @@ import com.hbs.koggiri.models.RoutinePresentation
 import com.hbs.koggiri.ui.component.*
 import com.hbs.koggiri.ui.home.component.CardList
 import com.hbs.koggiri.ui.home.component.RoutineItemList
+import com.hbs.koggiri.ui.home.state.HomeUiState
 import com.hbs.koggiri.ui.theme.PointRedColor
 
 @Composable
