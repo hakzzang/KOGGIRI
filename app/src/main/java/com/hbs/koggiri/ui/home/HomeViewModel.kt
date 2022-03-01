@@ -7,6 +7,7 @@ import com.hbs.data.Result
 import com.hbs.data.routine.RoutineRepository
 import com.hbs.koggiri.mappers.toPresentation
 import com.hbs.koggiri.models.HomePresentations
+import com.hbs.koggiri.models.RoutineEditPresentation
 import com.hbs.koggiri.models.RoutinePresentation
 import com.hbs.koggiri.ui.home.state.HomeUiState
 import kotlinx.coroutines.flow.*
@@ -17,7 +18,8 @@ private data class HomeViewModelState(
     val isLoading: Boolean = false,
     val isClickDetail: Boolean = false,
     val searchTitle: String = "",
-    val routine: RoutinePresentation? = null
+    val routine: RoutinePresentation? = null,
+    val routineEditPresentation: RoutineEditPresentation? = null
 ) {
     fun toUiState() = if (home == null) {
         HomeUiState.NoAssets(isLoading = isLoading)
@@ -26,9 +28,7 @@ private data class HomeViewModelState(
             if (routine == null) {
                 HomeUiState.NoAssets(isLoading = isLoading)
             } else {
-                HomeUiState.HasDetailAssets(
-                    routines = home.routinePresentations,
-                    routine = routine,
+                HomeUiState.EditScreenUiState(
                     isLoading = isLoading
                 )
             }
@@ -39,6 +39,12 @@ private data class HomeViewModelState(
             )
         }
     }
+
+    fun toEditUiState() = if (routineEditPresentation != null) {
+        HomeUiState.EditScreenUiState(routineEditPresentation.step)
+    } else {
+        HomeUiState.EditScreenUiState(0)
+    }
 }
 
 class HomeViewModel(
@@ -47,6 +53,15 @@ class HomeViewModel(
     private val viewModelState = MutableStateFlow(HomeViewModelState())
     val uiState = viewModelState
         .map { it.toUiState() }
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            viewModelState.value.toUiState()
+        )
+
+    private val _editUiState = MutableStateFlow(HomeViewModelState())
+    val editUiState = _editUiState
+        .map { it.toEditUiState() }
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,
@@ -79,8 +94,15 @@ class HomeViewModel(
             it.copy(
                 searchTitle = routine.title,
                 isClickDetail = true,
-                routine = routine
+                routine = routine,
+                routineEditPresentation = null
             )
+        }
+    }
+
+    fun clickEditDoneButton(step: Int) {
+        _editUiState.update {
+            it.copy(routineEditPresentation = RoutineEditPresentation(step))
         }
     }
 

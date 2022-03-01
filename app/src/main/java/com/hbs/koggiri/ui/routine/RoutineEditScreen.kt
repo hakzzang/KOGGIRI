@@ -9,18 +9,24 @@ import com.hbs.koggiri.ui.home.state.HomeUiState
 fun PreviewEditScreen() {
     RoutineEditScreen(
         title = "What are you goals?",
-        subtitle = "Select all that apply"
+        subtitle = "Select all that apply",
+        uiState = null,
+        onClickEditDoneButton = {}
     )
 }
 @Composable
 fun RoutineEditScreen(
     title: String,
     subtitle: String,
-    uiState: HomeUiState.HasDetailAssets? = null
+    uiState: HomeUiState? = null,
+    onClickEditDoneButton: ((Int) -> Unit)
 ) {
-    RoutineEditContents(
-        title = title,
-        subtitle = subtitle,
-        uiState = uiState
-    )
+    if(uiState is HomeUiState.EditScreenUiState) {
+        RoutineEditContents(
+            title = title,
+            subtitle = subtitle,
+            uiState = uiState,
+            onClickEditDoneButton = onClickEditDoneButton
+        )
+    }
 }

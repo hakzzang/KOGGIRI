@@ -14,9 +14,8 @@ sealed interface HomeUiState {
         override val isLoading: Boolean = false
     ) : HomeUiState
 
-    data class HasDetailAssets(
-        val routines: List<RoutinePresentation> = emptyList(),
-        val routine: RoutinePresentation,
+    data class EditScreenUiState(
+        val step: Int = 0,
         override val isLoading: Boolean = false
     ) : HomeUiState
 }

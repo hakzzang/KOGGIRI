@@ -15,15 +15,17 @@ fun HomeRoute(
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     val uiState by homeViewModel.uiState.collectAsState()
-
+    val editUiState by homeViewModel.editUiState.collectAsState()
     HomeRoute(
         uiState = uiState,
+        editUiState = editUiState,
         onClickRoutineContent = { routine ->
             homeViewModel.clickRoutineContent(routine)
         },
         onClickGreetingContent = { },
         onClickGreetingEdit = { },
         onCompleteHomeDetail = { },
+        onClickEditDoneButton = { step -> homeViewModel.clickEditDoneButton(step) },
         scaffoldState = scaffoldState
     )
 }
@@ -31,10 +33,12 @@ fun HomeRoute(
 @Composable
 fun HomeRoute(
     uiState: HomeUiState,
+    editUiState : HomeUiState,
     onClickGreetingContent: (String) -> Unit,
     onClickGreetingEdit: (String) -> Unit,
     onClickRoutineContent: (RoutinePresentation) -> Unit,
     onCompleteHomeDetail: (Boolean) -> Unit,
+    onClickEditDoneButton: ((Int) -> Unit),
     scaffoldState: ScaffoldState
 ) {
     when (getHomeScreenType(uiState)) {
@@ -59,11 +63,12 @@ fun HomeRoute(
             )
         }
         HomeScreenType.EditPage -> {
-            if (uiState is HomeUiState.HasDetailAssets) {
+            if (uiState is HomeUiState.EditScreenUiState) {
                 RoutineEditScreen(
                     title = "What are you goals?",
                     subtitle = "Select all that apply",
-                    uiState = uiState
+                    uiState = editUiState,
+                    onClickEditDoneButton = onClickEditDoneButton
                 )
             }
         }
@@ -84,7 +89,7 @@ private fun getHomeScreenType(uiState: HomeUiState): HomeScreenType {
         is HomeUiState.NoAssets -> {
             HomeScreenType.Loading
         }
-        is HomeUiState.HasDetailAssets -> {
+        is HomeUiState.EditScreenUiState -> {
             HomeScreenType.EditPage
         }
     }
