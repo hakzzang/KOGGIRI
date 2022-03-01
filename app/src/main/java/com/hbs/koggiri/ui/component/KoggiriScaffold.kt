@@ -1,11 +1,14 @@
 package com.hbs.koggiri.ui.component
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.hbs.koggiri.KoggiriScreen
@@ -49,7 +52,9 @@ fun KoggiriScaffold() {
                 currentScreen = currentScreen
             )
         }
-    ) {
-        KoggiriNavHost(navController = navController)
+    ) { innerPadding ->
+        Box(Modifier.padding(innerPadding)){
+            KoggiriNavHost(navController = navController)
+        }
     }
 }
