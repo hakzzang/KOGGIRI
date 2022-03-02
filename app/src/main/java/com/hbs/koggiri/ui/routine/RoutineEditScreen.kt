@@ -10,10 +10,10 @@ fun PreviewEditScreen() {
     RoutineEditScreen(
         title = "What are you goals?",
         subtitle = "Select all that apply",
-        uiState = null,
         onClickEditDoneButton = {}
     )
 }
+
 @Composable
 fun RoutineEditScreen(
     title: String,
@@ -21,12 +21,21 @@ fun RoutineEditScreen(
     uiState: HomeUiState? = null,
     onClickEditDoneButton: ((Int) -> Unit)
 ) {
-    if(uiState is HomeUiState.EditScreenUiState) {
-        RoutineEditContents(
-            title = title,
-            subtitle = subtitle,
-            uiState = uiState,
-            onClickEditDoneButton = onClickEditDoneButton
-        )
+    if (uiState is HomeUiState.EditScreenUiState) {
+        if (uiState.step == 0) {
+            SelectionRoutineContents(
+                title = title,
+                subtitle = subtitle,
+                onClickEditDoneButton = onClickEditDoneButton
+            )
+        } else if (uiState.step == 1) {
+            CounterRoutineContents(
+                uiState = uiState,
+                title = title,
+                subtitle = subtitle,
+                onClickEditDoneButton = onClickEditDoneButton
+            )
+        }
+
     }
 }
