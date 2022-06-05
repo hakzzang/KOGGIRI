@@ -26,6 +26,7 @@ import com.hbs.koggiri.ui.theme.PointRedColor
 
 @Composable
 fun GreetingContent(
+    title: String,
     onClickGreetingContent: (String) -> Unit,
     onClickGreetingEdit: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -33,7 +34,7 @@ fun GreetingContent(
     Column(modifier = modifier) {
         Row {
             KoggiriMediumTitle(
-                title = "Today Calorie Asset \uD83E\uDD51",
+                title = title,
                 modifier = Modifier
                     .weight(1f)
                     .wrapContentWidth(Alignment.Start)
@@ -133,17 +134,9 @@ fun RoutineContent(
 }
 
 @Composable
-fun SaladHistoryList(saladHistories: List<String>, modifier: Modifier = Modifier) {
+fun<T> HistoryList(title:String, datas: List<T>, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
-        MediumTitleWithIcon(title = "Salad History", onClickIcon = { })
-        CardList(saladHistories = saladHistories)
-    }
-}
-
-@Composable
-fun GalleryHistoryList(saladHistories: List<String>, modifier: Modifier = Modifier) {
-    Column(modifier = modifier) {
-        MediumTitleWithIcon(title = "Gallery History", onClickIcon = { })
-        CardList(saladHistories = saladHistories)
+        MediumTitleWithIcon(title = title, onClickIcon = { })
+        CardList(datas = datas)
     }
 }

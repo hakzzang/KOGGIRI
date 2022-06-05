@@ -7,7 +7,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.hbs.koggiri.R
 import com.hbs.koggiri.models.RoutinePresentation
 import com.hbs.koggiri.ui.component.getCardModifier
 import com.hbs.koggiri.ui.home.state.HomeUiState
@@ -32,22 +34,25 @@ fun HomeScreen(
     val scrollState = rememberScrollState()
     Column(Modifier.verticalScroll(scrollState)) {
         GreetingContent(
+            title = stringResource(R.string.calorie_asset_title),
             onClickGreetingContent = onClickGreetingContent,
             onClickGreetingEdit = onClickGreetingEdit,
             modifier = Modifier.getCardModifier()
         )
         RoutineContent(
-            title = "Your routine",
+            title = stringResource(R.string.routine_title),
             uiState = uiState,
             onClickRoutineContent = onClickRoutineContent,
             modifier = Modifier.getCardModifier()
         )
-        SaladHistoryList(
-            saladHistories = saladHistories,
+        HistoryList(
+            title = "Salad History",
+            datas = saladHistories,
             modifier = Modifier.getCardModifier()
         )
-        GalleryHistoryList(
-            saladHistories = saladHistories,
+        HistoryList(
+            title = "Gallery History",
+            datas = saladHistories,
             modifier = Modifier.getCardModifier()
         )
         Spacer(Modifier.height(72.dp))
