@@ -17,11 +17,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.hbs.koggiri.KoggiriScreen
+import com.hbs.koggiri.models.HorizontalTimerItem
+import com.hbs.koggiri.models.IconItem
 import com.hbs.koggiri.models.RoutinePresentation
 import com.hbs.koggiri.ui.component.*
 import com.hbs.koggiri.ui.home.component.CardList
 import com.hbs.koggiri.ui.home.component.RoutineItemList
 import com.hbs.koggiri.ui.home.state.HomeUiState
+import com.hbs.koggiri.ui.theme.NeutralVariant90
 import com.hbs.koggiri.ui.theme.PointRedColor
 
 @Composable
@@ -130,6 +133,31 @@ fun RoutineContent(
     Column(modifier = modifier) {
         MediumTitleWithIcon(title = title, onClickIcon = { })
         RoutineItemList(routine = assets.routines, onClickRoutineContent = onClickRoutineContent)
+    }
+}
+
+@Composable
+fun RoutineTimer(
+    title: String,
+    uiState: HomeUiState,
+    modifier: Modifier = Modifier
+) {
+    if (uiState is HomeUiState.NoAssets) {
+        return
+    }
+    val assets = uiState as HomeUiState.HasAssets
+    Column(modifier = modifier) {
+        MediumTitleWithIcon(title = title, onClickIcon = { })
+        HorizontalTimerView(
+            item = HorizontalTimerItem(
+                """고구마 먹기""",
+                """3시간 남음""",
+                "2022년6월5일22:00",
+                IconItem("""🍠""", Color(0xFFFB6A02))
+            ),
+            modifier = Modifier
+                .padding(start = 16.dp, end = 12.dp, top = 0.dp, bottom = 0.dp)
+        )
     }
 }
 

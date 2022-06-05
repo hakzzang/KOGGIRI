@@ -45,13 +45,18 @@ fun HomeScreen(
             onClickRoutineContent = onClickRoutineContent,
             modifier = Modifier.getCardModifier()
         )
+        RoutineTimer(
+            title = """Progress ⏱️""",
+            uiState = uiState,
+            modifier = Modifier.getCardModifier()
+        )
         HistoryList(
-            title = "Salad History",
+            title = stringResource(R.string.salad_history_title),
             datas = saladHistories,
             modifier = Modifier.getCardModifier()
         )
         HistoryList(
-            title = "Gallery History",
+            title = stringResource(R.string.gallery_history_title),
             datas = saladHistories,
             modifier = Modifier.getCardModifier()
         )
