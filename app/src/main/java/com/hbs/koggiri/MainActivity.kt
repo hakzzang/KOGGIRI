@@ -3,6 +3,7 @@ package com.hbs.koggiri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.hbs.data.Greeting
 import com.hbs.koggiri.ui.KoggiriApp
 
 class MainActivity : ComponentActivity() {
@@ -10,6 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             KoggiriApp()
+            Greeting()
         }
     }
 }
