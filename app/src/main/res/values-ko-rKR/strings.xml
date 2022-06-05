@@ -3,4 +3,6 @@
     <string name="app_name">KOGGIRI</string>
     <string name="routine_title">오늘의 루틴 🔁</string>
     <string name="calorie_asset_title">오늘의 칼로리 🥑</string>
+    <string name="salad_history_title">어제의 샐러드 🥗</string>
+    <string name="gallery_history_title">기록 사진 📷</string>
 </resources>

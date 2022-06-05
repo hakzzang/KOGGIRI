@@ -2,4 +2,6 @@
     <string name="app_name">KOGGIRI</string>
     <string name="routine_title">Your routine 🔁</string>
     <string name="calorie_asset_title">Today Calorie Asset 🥑</string>
+    <string name="salad_history_title">Salad History 🥗</string>
+    <string name="gallery_history_title">Gallery History 📷</string>
 </resources>
