@@ -1,6 +1,6 @@
 package com.hbs.koggiri.ui.component
 
-import androidx.compose.foundation.Image
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -8,15 +8,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.CachePolicy
+import coil.request.ImageRequest
+import com.hbs.koggiri.models.MediumImageCardItem
 
 @Composable
-fun MediumCard(title: String, dateText: String, resource: Painter) {
+fun MediumCard(item: MediumImageCardItem) {
     Card(
         modifier = Modifier
             .width(212.dp)
@@ -27,17 +30,22 @@ fun MediumCard(title: String, dateText: String, resource: Painter) {
         backgroundColor = MaterialTheme.colorScheme.primaryContainer
     ) {
         Column {
-            Image(
-                painter = resource,
-                contentDescription = title,
-                contentScale = ContentScale.Crop,
+            AsyncImage(model = ImageRequest.Builder(LocalContext.current)
+                .data(item.imageRes)
+                .crossfade(true)
+                .diskCachePolicy(CachePolicy.ENABLED)
+                .memoryCachePolicy(CachePolicy.ENABLED)
+                .build(),
+                contentDescription = null,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(180.dp),
-                alignment = Alignment.Center
-            )
+                    .fillMaxSize()
+                    .padding(4.dp),
+                contentScale = ContentScale.Crop,
+                onError = {
+                    Log.d("onError", it.result.throwable.toString())
+                })
             Text(
-                dateText,
+                item.tagText,
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
@@ -64,7 +72,7 @@ fun MediumCard(title: String, dateText: String, resource: Painter) {
                     modifier = Modifier.size(12.dp)
                 )
                 Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                Text(title)
+                Text(item.title)
             }
         }
     }
