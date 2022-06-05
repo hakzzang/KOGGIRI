@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KOGGIRI</string>
+    <string name="routine_title">오늘의 루틴 🔁</string>
+    <string name="calorie_asset_title">오늘의 칼로리 🥑</string>
+</resources>
